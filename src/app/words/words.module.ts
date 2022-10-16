@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import { MisPalabrasComponent } from './pages/mis-palabras/mis-palabras.component';
 import { VerPalabraComponent } from './pages/ver-palabra/ver-palabra.component';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
+import { SubMenuComponent } from './components/sub-menu/sub-menu.component';
 
 
 
@@ -10,7 +12,9 @@ import { VerPalabraComponent } from './pages/ver-palabra/ver-palabra.component';
   declarations: [
     PrincipalComponent,
     MisPalabrasComponent,
-    VerPalabraComponent
+    VerPalabraComponent,
+    BusquedaComponent,
+    SubMenuComponent
   ],
   exports: [
     PrincipalComponent,

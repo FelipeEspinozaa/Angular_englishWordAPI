@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <h5>Search: </h5>
+        <input  
+            type="text"
+            class="form-control"
+            placeholder="example: champion"
+            (keyup.enter)="buscar()"
+            #txtBuscar
+        >
+    </div> 
+    
+    <div class="palabra">
+        <p>
+            {{ palabra_actual }}
+        </p>
+    </div>
+</div>

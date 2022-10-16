@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.palabra {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.palabra p {
+    margin: 8px;
+    font-weight: bold;
+    font-size: 1.5em;
+}
