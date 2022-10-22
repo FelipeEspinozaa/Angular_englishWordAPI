@@ -1,18 +1,19 @@
 <div class="container">
     <div class="row">
         <h5>Search: </h5>
-        <input  
-            type="text"
-            class="form-control"
-            placeholder="example: champion"
-            (keyup.enter)="buscar()"
-            #txtBuscar
-        >
+        <form (ngSubmit) = "buscar()" autocomplete="off">
+            <input  
+                type="text"
+                name="termino"
+                class="form-control"
+                [placeholder]="placeholder"
+                [(ngModel)]="termino">
+        </form>
     </div> 
     
     <div class="palabra">
         <p>
-            {{ palabra_actual }}
+            {{ termino }}
         </p>
     </div>
 </div>

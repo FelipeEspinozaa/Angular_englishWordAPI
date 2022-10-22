@@ -1,5 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { WordsService } from '../../services/words.service';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-busqueda',
@@ -8,21 +7,16 @@ import { WordsService } from '../../services/words.service';
 })
 export class BusquedaComponent{
 
-  @ViewChild("txtBuscar") txtBuscar!: ElementRef<HTMLInputElement>;
-  palabra_actual: string = "";
+  @Output() onEnter: EventEmitter<string> = new EventEmitter;
+  //INPUT
+  @Input() placeholder: string = "";
+  
+  termino: string = "";
 
-  constructor( private wordService: WordsService ) { }
+  constructor() { }
 
   buscar() {
-    const valor = this.txtBuscar.nativeElement.value;
-    
-    if( valor.trim().length === 0){
-      return
-    }
-    
-    this.palabra_actual = valor;
-    this.wordService.buscarDefinicion( valor );
-    this.txtBuscar.nativeElement.value = "";
+    this.onEnter.emit( this.termino );
   }
 
 }

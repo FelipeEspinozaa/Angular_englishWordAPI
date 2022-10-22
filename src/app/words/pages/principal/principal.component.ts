@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { WordDefinitionsResponse } from '../../interfaces/word-definitions-interface';
+import { WordsService } from '../../services/words.service';
 
 @Component({
   selector: 'app-principal',
@@ -6,11 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class PrincipalComponent implements OnInit {
+export class PrincipalComponent{
 
-  constructor() { }
+  palabra: string = "";
+  hayError: boolean = false;
+  definiciones!: WordDefinitionsResponse; //con esto decimos que estamos seguro que nos traerá la información que viene dentro del tipo "WordDefinitionsResponse"
 
-  ngOnInit(): void {
+  constructor( private wordService: WordsService) { }
+
+  buscar ( termino: string ) {
+    this.hayError = false;
+    this.palabra = termino;
+
+    this.wordService.buscarDefinicion( this.palabra )
+      .subscribe( (definiciones) => {
+        this.definiciones = definiciones;
+        console.log(this.definiciones);
+      }, (err) => {
+        this.hayError = true;
+      })
   }
+
 
 }

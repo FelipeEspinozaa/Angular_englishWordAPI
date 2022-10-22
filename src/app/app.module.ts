@@ -8,7 +8,7 @@ import { WordsModule } from './words/words.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

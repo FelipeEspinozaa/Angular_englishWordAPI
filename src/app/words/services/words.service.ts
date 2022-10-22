@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { Injectable } from '@angular/core';
+import { Observable } from "rxjs";
+import { WordDefinitionsResponse } from "../interfaces/word-definitions-interface";
 
 
 @Injectable({
@@ -12,7 +14,6 @@ export class WordsService {
   private api_host: string = "wordsapiv1.p.rapidapi.com";
   private servicioUrl: string = "https://wordsapiv1.p.rapidapi.com";
   private historial_palabras: string[] = [];
-  
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +24,7 @@ export class WordsService {
   }
 
   // Metodo que buscará la palabra en la API
-  buscarDefinicion( query: string  = "") {
+  buscarDefinicion( query: string  = ""): Observable<WordDefinitionsResponse> {
 
     query = query.trim().toLocaleLowerCase();
     this.historial_palabras.unshift( query );
@@ -32,16 +33,10 @@ export class WordsService {
       .set("X-RapidAPI-Key" , this.api_key)
       .set("X-RapidAPI-Host", this.api_host)
 
-      console.log(headers);
-      console.log(this.servicioUrl);
-      
-      
-    this.http.get(`${this.servicioUrl}/words/${query}/definitions`, { headers: headers })
-      .subscribe( (resp) => {
-        console.log(resp);
-        this.historial_palabras
-      })
+    const url = `${this.servicioUrl}/words/${query}/definitions`;
+    console.log(url);
     
+    return this.http.get<WordDefinitionsResponse>((url), { headers: headers });
   }
 
 }
