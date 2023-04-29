@@ -9,7 +9,7 @@ export class BusquedaComponent{
 
   @Output() onEnter: EventEmitter<string> = new EventEmitter;
   //INPUT
-  @Input() placeholder: string = "";
+  @Input() placeholderrr: string = "";
   
   termino: string = "";
 
